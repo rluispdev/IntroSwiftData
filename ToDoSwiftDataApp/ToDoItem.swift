@@ -11,10 +11,10 @@ import SwiftData
 //Passando o macro e informa pro projeto que isso agora é uma entidade.
 @Model
 // Pra usar todas funcionalidades do SwiftData usamos classes, ele trabalha com herenças
-class ToDoItem {
+class ToDoItem: Identifiable {
     
     ///Propriedades
-    var id = UUID().uuidString
+    var id = UUID()
     var name: String
     var isComolete: Bool
     var createAt = Date()
