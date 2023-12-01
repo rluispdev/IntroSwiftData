@@ -51,7 +51,7 @@ struct ContentView: View {
                 }
             }
             .sheet(item: $todo) { todo in
-                DetailView()
+                DetailView(item: todo)
             }
         }
     }
@@ -61,19 +61,34 @@ struct ContentView: View {
 //Modularizar
 
 struct DetailView: View {
+    @State var item: ToDoItem
     var body: some View {
         VStack {
             //TextField
+            TextField("Tarefa", text: $item.name)
             Spacer()
             
             //Botoes
-            Button ("Fechar") {
+            Button (action: {
                 
-            }
-            Button ("Deletar") {
+            }, label: {
+                Text("Fechar")
+                    .frame(maxWidth: .infinity)
                 
-            }
+            })
+            .tint(.black)
+            .buttonStyle(.borderedProminent)
+           
+            Button (action: {
+                
+            }, label: {
+                Text("Deletar")
+                    .frame(maxWidth: .infinity)
+            })
+            .tint(.red)
+            .buttonStyle(.borderedProminent)
         }
+        .padding()
     }
 }
 
