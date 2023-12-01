@@ -52,6 +52,8 @@ struct ContentView: View {
             }
             .sheet(item: $todo) { todo in
                 DetailView(item: todo)
+                    .presentationDetents([.fraction(0.2)])
+                    .interactiveDismissDisabled()
             }
         }
     }
@@ -62,6 +64,7 @@ struct ContentView: View {
 
 struct DetailView: View {
     @State var item: ToDoItem
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
             //TextField
@@ -70,11 +73,11 @@ struct DetailView: View {
             
             //Botoes
             Button (action: {
-                
+                dismiss()
             }, label: {
                 Text("Fechar")
                     .frame(maxWidth: .infinity)
-                
+                  
             })
             .tint(.black)
             .buttonStyle(.borderedProminent)
