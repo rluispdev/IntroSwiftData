@@ -12,7 +12,9 @@ struct ContentView: View {
     
     /// Container x Context =  Quando falamos de context estamos fa;lando de banco de dados,  Container = Id, Name, IsComplete, o objeto em si,  o Context é a referencia do objeto
     @Environment(\.modelContext) private var context //Gerente
-    @Query private var todos: [ToDoItem]
+    
+    //Criando ordenacao
+    @Query(sort: \ToDoItem.name)  private var todos: [ToDoItem]
     @State private var todo: ToDoItem?
     
     var body: some View {
