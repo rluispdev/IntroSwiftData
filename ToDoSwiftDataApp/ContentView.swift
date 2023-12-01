@@ -8,8 +8,6 @@
 import SwiftUI
 import SwiftData
 
-
-
 struct ContentView: View {
     
     /// Container x Context =  Quando falamos de context estamos fa;lando de banco de dados,  Container = Id, Name, IsComplete, o objeto em si,  o Context é a referencia do objeto
@@ -17,9 +15,25 @@ struct ContentView: View {
     @Query private var todos: [ToDoItem]
     
     var body: some View {
-        List {
-            ForEach(todos) { ToDoItem in
-                Text(ToDoItem.name)
+        
+    
+        NavigationStack {
+            List {
+                ForEach(todos) { ToDoItem in
+                    Text(ToDoItem.name)
+                }
+            }
+            .navigationTitle("Meus ToDo")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        let todo = ToDoItem(name: "Tarefa", isComolete: false)
+                        context.insert(todo)
+                        
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
+                }
             }
         }
     }
@@ -27,4 +41,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: ToDoItem.self)
 }
