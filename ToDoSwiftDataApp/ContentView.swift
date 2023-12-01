@@ -14,7 +14,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var context //Gerente
     
     //Criando ordenacao
-    @Query(sort: \ToDoItem.name)  private var todos: [ToDoItem]
+    @Query(sort: \ToDoItem.name, animation: .easeInOut)  private var todos: [ToDoItem]
     @State private var todo: ToDoItem?
     
     var body: some View {
