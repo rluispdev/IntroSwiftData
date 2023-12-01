@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
     
     /// Container x Context =  Quando falamos de context estamos fa;lando de banco de dados,  Container = Id, Name, IsComplete, o objeto em si,  o Context é a referencia do objeto
-    @Environment(\.modelContext) private var context
+    @Environment(\.modelContext) private var context //Gerente
     @Query private var todos: [ToDoItem]
     @State private var todo: ToDoItem?
     
@@ -65,6 +65,10 @@ struct ContentView: View {
 struct DetailView: View {
     @State var item: ToDoItem
     @Environment(\.dismiss) var dismiss
+    //Gerente
+    @Environment(\.modelContext) private var context
+    
+    
     var body: some View {
         VStack {
             //TextField
@@ -83,6 +87,7 @@ struct DetailView: View {
             .buttonStyle(.borderedProminent)
            
             Button (action: {
+                context.delete(item)
                 
             }, label: {
                 Text("Deletar")
